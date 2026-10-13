@@ -12,7 +12,7 @@ print("Welcome to the Number Guessing Game")
 
 while True:
     diff = input("Choose difficulty level: Easy, Medium, Hard\n")
-    diff = diff.lower()
+    diff = diff.strip().lower()
     if diff in ["easy", "medium", "hard"]:
         break
     else:
@@ -31,21 +31,44 @@ else:
 # ---------- Choose a mode ----------
 # Goal: keep asking until the player picks Classic or Time Challenge.
 
-secretNum = random.randint(1, max)
+
 
 
 # ---------- Set up the round ----------
 # Goal: pick the secret number (use DEBUG_SECRET when it is not None) and start the clock.
+#
+if DEBUG_SECRET is not None:
+    secretNum = DEBUG_SECRET
+else:
+    secretNum = random.randint(1, max)
 
 # ---------- Guess loop ----------
 # Goal: keep asking for guesses until the player wins, runs out of attempts, or runs out of time.
-guess = int(input(f"what is your number? between 1 and {max}\n"))
+while True:
+    guess = input(f"what is your number? between 1 and {max}\n")
+    if guess.isdigit():
+        guess = int(guess)
+        break
+
+current = 1
 while guess != secretNum:
+
+    if current == allow:
+        print(f"you failed. Secret number was {secretNum}")
+        exit(0)
+
     if guess > secretNum:
-        print("too high")
+        print(f"too high, remaining attempt: {allow-current}")
     else:
-        print("too low")
-    guess = int(input("what is your number?\n"))
+        print(f"too low, remaining attempt: {allow-current}")
+
+    while True:
+        guess = input(f"what is your number? between 1 and {max}\n")
+        if guess.isdigit():
+            guess = int(guess)
+            break
+
+    current += 1
 
 print("congrat")
 
