@@ -26,7 +26,7 @@ while True:
         diff = int(diff)
         break
     else:
-        print("Invalid input. Choose difficulty level: \n1. Easy\n2. Medium\n3. Hard\n")
+        print("Invalid input. ", end="")
 
 
 
@@ -41,7 +41,7 @@ while True:
         mode = int(mode)
         break
     else:
-        print("Invalid input. Choose mode: \n1. Classic\n2. Challenge\n")
+        print("Invalid input. ", end="")
 
 
 
@@ -105,4 +105,4 @@ while num_attempt < attempts_allowed:
     else:
         print(f"Too low, remaining attempt: {attempts_allowed-num_attempt}")
 
-print(f"No more attempt. Secret number was {secret_number}")
+print(f"Reach to max attempt. Secret number was {secret_number}")
