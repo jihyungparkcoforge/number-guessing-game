@@ -8,7 +8,7 @@ import random
 import time
 
 # ---------- Settings ----------
-DEBUG_SECRET = None   # For testing, set to a number such as 42. Set back to None before your final commit.
+DEBUG_SECRET = 20   # For testing, set to a number such as 42. Set back to None before your final commit.
 TIME_LIMIT = 60       # Seconds attempts_alloweded in Time Challenge mode
 
 
@@ -72,101 +72,34 @@ start_time = time.time()
 # ---------- Guess loop ----------
 # Goal: keep asking for guesses until the player wins, runs out of attempts, or runs out of time.
 
-
-
-if mode == 2:
-
-
-    #Get first guess. Run loop while it pass type checker
+num_attempt = 0
+while num_attempt < attempts_allowed:
     while True:
-        # calculate remaining time by [time limit - (current time - start time)]
-        guess = input(f"what is your number? between 1 and {maximum_number}\nYou have {int(TIME_LIMIT - (time.time()- start_time))} seconds\n")
-        if time.time() - start_time > TIME_LIMIT:
+        if mode == 1:
+            guess = input(f"what is your number? between 1 and {maximum_number}\n")
+        else:
+            guess = input(f"what is your number? between 1 and {maximum_number}\nYou have {int(TIME_LIMIT - (time.time()- start_time))} seconds\n")
+        # After a valid guess, the game checks the clock. If time has run out, the game ends and reveals the number, even if that guess was correct.
+        if time.time() - start_time > TIME_LIMIT and mode == 2:
             print(f"Time is up! Secret number was {secret_number}")
             exit(0)
-        # guess must be integer
+
         if guess.isdigit() and int(guess) >= 1 and int(guess) <= maximum_number:
             guess = int(guess)
             break
         else:
             print("\nInvalid. ", end="")
 
-    num_attempt = 1
-    # Running loop until user get correct guess
-    while guess != secret_number:
+    num_attempt += 1
 
+    if guess == secret_number:
+        print(f"Congratulations! You guessed the number in {num_attempt} attempts!")
+        exit(0)
 
+    # Give hint
+    if guess > secret_number:
+        print(f"too high, remaining attempt: {attempts_allowed-num_attempt}")
+    else:
+        print(f"too low, remaining attempt: {attempts_allowed-num_attempt}")
 
-        # Give hint
-        if guess > secret_number:
-            print(f"too high, remaining attempt: {attempts_allowed-num_attempt}")
-        else:
-            print(f"too low, remaining attempt: {attempts_allowed-num_attempt}")
-
-        # Exit with reveal secret number when number of attemp reach to maximum allowness
-        if num_attempt == attempts_allowed:
-            print(f"you failed. Secret number was {secret_number}")
-            exit(0)
-
-        # Ask guess again with type checker
-        while True:
-            guess = input(f"what is your number? between 1 and {maximum_number}\nYou have {int(TIME_LIMIT - (time.time()- start_time))} seconds\n")
-            # After a valid guess, the game checks the clock. If time has run out, the game ends and reveals the number, even if that guess was correct.
-            if time.time() - start_time > TIME_LIMIT:
-                print(f"Time is up! Secret number was {secret_number}")
-                exit(0)
-
-            if guess.isdigit() and int(guess) >= 1 and int(guess) <= maximum_number:
-                guess = int(guess)
-                break
-            else:
-                print("\nInvalid. ", end="")
-
-        num_attempt += 1
-
-
-
-
-else:
-
-    #Get first guess. Run loop while it pass type checker
-    while True:
-        # calculate remaining time by [time limit - (current time - start time)]
-        guess = input(f"what is your number? between 1 and {maximum_number}\n")
-        # guess must be integer
-        if guess.isdigit() and int(guess) >= 1 and int(guess) <= maximum_number:
-            guess = int(guess)
-            break
-        else:
-            print("\nInvalid. ", end="")
-
-
-    num_attempt = 1
-    # Running loop until user get correct guess
-    while guess != secret_number:
-
-        # Give hint
-        if guess > secret_number:
-            print(f"too high, remaining attempt: {attempts_allowed-num_attempt}")
-        else:
-            print(f"too low, remaining attempt: {attempts_allowed-num_attempt}")
-
-        # Exit with reveal secret number when number of attemp reach to max allowness
-        if num_attempt == attempts_allowed:
-            print(f"you failed. Secret number was {secret_number}")
-            exit(0)
-
-        # Ask guess again with type checker
-        while True:
-            guess = input(f"what is your number? between 1 and {maximum_number}\n")
-            if guess.isdigit() and int(guess) >= 1 and int(guess) <= maximum_number:
-                guess = int(guess)
-                break
-            else:
-                print("\nInvalid. ", end="")
-
-        num_attempt += 1
-
-# ---------- End of round ----------
-# Goal: show the result that matches how the round ended.
-print(f"Congratulations! You guessed the number in {num_attempt} attempts!")
+print(f"No more attempt. Secret number was {secret_number}")
