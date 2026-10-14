@@ -1,12 +1,36 @@
 # number-guessing-game
 
+Guessing game that runs in the terminal. The computer picks a secret number, and the player guesses it with "too low" and "too high" hints. The player chooses a difficulty level and can play in a timed mode.
+
+## Quick Start
+
+```{shell}
+git clone https://github.com/jihyungparkcoforge/number-guessing-game.git
+cd number-guessing-game
+uv venv
+source .venv/bin/activate
+python3 guess.py
+```
+
+## Mode
+
+|Mode	|Feature	|
+|----|----|
+|Classic	| No time limit|
+|Time Challenge	| 60 second time limit|
+
+## Difficulty levels
+|Level	|Range	|Attempts allowed|
+|----|----|----|
+|Easy	|1 to 50	|10|
+|Medium	|1 to 100|	8|
+|Hard	|1 to 500	|10|
 
 
 
-DEBUG SECRET NUM = 20
 
 ## Test Cases
-
+DEBUG SECRET NUM = 20
 | What I tested | What I did | Expected result | Actual result | Pass
 |------------|-----------|--------------|-------------|-----------|
 | Too low | Easy, Classic, guess 17 | Shows "Too low" | Too low, remaining attempt: 9 | Yes |
