@@ -8,7 +8,7 @@ import random
 import time
 
 # ---------- Settings ----------
-DEBUG_SECRET = 20   # For testing, set to a number such as 42. Set back to None before your final commit.
+DEBUG_SECRET = None   # For testing, set to a number such as 42. Set back to None before your final commit.
 TIME_LIMIT = 60       # Seconds attempts_alloweded in Time Challenge mode
 
 
