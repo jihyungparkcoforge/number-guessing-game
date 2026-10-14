@@ -40,6 +40,8 @@ DEBUG SECRET NUM = 20
 | Invalid above range input guess | Easy, Classic, enter 123 | Shows "Invalid" and ask number again | Invalid. What is your number? between 1 and 50 | Yes |
 | Invalid char input guess | Easy, Classic, enter "hi" | Shows "Invalid"and ask number again | Invalid. What is your number? between 1 and 50 | Yes |
 | Invalid difficulty choice | Type "easy" instead of number | Shows "Invalid" and ask difficulty again | Invalid input. Choose difficulty level:\n1. Easy\n2. Medium\n3. Hard | Yes|
+| Invalid empty char guess | Easy, Classic, enter " " | Shows "Invalid" and ask number again | Invalid. What is your number? between 1 and 50 | Yes|
+| Valid guess but with " " string | Easy, Classic, enter " 8" | Shows "Too low" | Too low, remaining attempt: 9 | Yes | 
 | Invalid mode choice | Type "classic" instead of number | Shows "Invalid" and ask mode choice again | Invalid input. Choose mode:\n1. Classic\n2. Challenge | Yes |
 | Challenge mode time checking when asking guess | Easy, Challenge, guess 17 | Shows "Too low", remaining attempt, ask again with time left | Too low, remaining attempt: 9\nWhat is your number? between 1 and 50\nYou have 56 seconds | Yes |
 | Times up | Easy, Challenge, wait more than 60 sec, guess 17 | Shows "Time is up! Secret number was {secret num}" | Time is up! Secret number was 20 | Yes |

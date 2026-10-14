@@ -47,11 +47,6 @@ while True:
 
 # ---------- Set up the round ----------
 # Goal: pick the secret number (use DEBUG_SECRET when it is not None) and start the clock.
-#
-if DEBUG_SECRET is not None:
-    secretNum = DEBUG_SECRET
-else:
-    secretNum = random.randint(1, max)
 
 
 # asign each variable based on user choice.
@@ -83,9 +78,9 @@ while num_attempt < attempts_allowed:
     # Ask number guess until user enter valid input. Number must be integer and must be in an allowed range. Shows remain time and check when mode == 2
     while True:
         if mode == 1:
-            guess = input(f"What is your number? between 1 and {maximum_number}\n")
+            guess = input(f"What is your number? between 1 and {maximum_number}\n").strip()
         else:
-            guess = input(f"What is your number? between 1 and {maximum_number}\nYou have {int(TIME_LIMIT - (time.time()- start_time))} seconds\n")
+            guess = input(f"What is your number? between 1 and {maximum_number}\nYou have {int(TIME_LIMIT - (time.time()- start_time))} seconds\n").strip()
         # After a valid guess, the game checks the clock. If time has run out, the game ends and reveals the number, even if that guess was correct.
         if time.time() - start_time > TIME_LIMIT and mode == 2:
             print(f"Time is up! Secret number was {secret_number}")
