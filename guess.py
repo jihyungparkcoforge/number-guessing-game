@@ -47,6 +47,11 @@ while True:
 
 # ---------- Set up the round ----------
 # Goal: pick the secret number (use DEBUG_SECRET when it is not None) and start the clock.
+#
+if DEBUG_SECRET is not None:
+    secretNum = DEBUG_SECRET
+else:
+    secretNum = random.randint(1, max)
 
 
 # asign each variable based on user choice.
