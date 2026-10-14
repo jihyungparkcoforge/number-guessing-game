@@ -2,6 +2,15 @@
 #number guessing game that runs in the terminal.
 #The computer picks a secret number, and the player guesses it with "too low" and "too high" hints.
 #The player chooses a difficulty level and can play in a timed mode.
+#
+# Variables:
+# mode -> interger, 1 = Classic | 2 = Time Challenge
+# diff -> difficulty level, 1 = easy | 2 = medium | 3 = hard
+# maximum_number -> maximum number that scret number can be (depands on diff)
+# attemps_allowed -> allowed attempt to guess (depands on diff)
+# start_time -> time righr after choose mode (before start guessing)
+# num_attempt -> current number of attempt
+# secret_number -> secret number that user need to guess
 ###
 
 import random
@@ -73,6 +82,8 @@ start_time = time.time()
 # Goal: keep asking for guesses until the player wins, runs out of attempts, or runs out of time.
 
 num_attempt = 0
+
+# Main loop until hit the allowed attempt.
 while num_attempt < attempts_allowed:
 
     # Ask number guess until user enter valid input. Number must be integer and must be in an allowed range. Shows remain time and check when mode == 2
@@ -86,6 +97,7 @@ while num_attempt < attempts_allowed:
             print(f"Time is up! Secret number was {secret_number}")
             exit(0)
 
+        #type and range checker
         if guess.isdigit() and int(guess) >= 1 and int(guess) <= maximum_number:
             guess = int(guess)
             break
